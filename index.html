@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="title">
+        <h1>Austin,TX Quiz</h1>
+        <p class="start-par">Click the start button to begin the Austin quiz. You will have 60 seconds to complete the quiz. If you get a question wrong, you will have 10 seconds deducted. At the end of the quiz, please enter your initials so your score may be saved on the score board.</p>
+    </div>
+    <div class="container">
+        <div id ="question-container" class="hide">
+            <div id = "question">Question</div>
+            <div id = "answer-btns" class="btn-grid">
+                <button class="btn" id="question1">
+                    What type of animal emerges from the congress bridge during the summer?
+                </button>
+                <button class="btn" id="question2">
+                    Austin is known as the ____.
+                </button>
+                <button class="btn" id="question3">
+                    Austin is the __ largest city in Texas by population.
+                </button>
+                <button class="btn" id="question4">
+                    What is the name of the lake that flows through central Austin? Hint: It runs under Congress and First street, and it reaches I-35 and Mopac.
+                </button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-button" class="start-button">
+                <h1>Start!</h1>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

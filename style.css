@@ -1,0 +1,19 @@
+body{
+    background-color: lavender;
+}
+
+.title{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+}
+.start-par{
+    font-size: 15px;
+    text-align: center;
+    color: black;
+    padding: 50px;
+}
+.startbutton{
+    margin: auto;
+}
