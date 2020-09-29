@@ -1,5 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body{
     background-color: lavender;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title{
@@ -16,4 +25,31 @@ body{
 }
 .startbutton{
     margin: auto;
+}
+
+.btn-grid{
+    display: grid;
+    padding: 10px;
+    gap: 10px;
+}
+.btn{
+    background-color: white;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn:hover{
+    border-color: cornflowerblue;
+}
+.btn:active{
+    border-color: cornflowerblue;
+}
+
+.hide{
+    display: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
