@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Added a link to our external stylesheet-->
+  <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
-    <div class="title">
-        <h1>Austin,TX Quiz</h1>
-        <p class="start-par">Click the start button to begin the Austin quiz. You will have 60 seconds to complete the quiz. If you get a question wrong, you will have 10 seconds deducted. At the end of the quiz, please enter your initials so your score may be saved on the score board.</p>
-        <button id="start-button" class="start-button">
+    <div class="timer">Time:<span id="current-time">0</span></div>
+    <div class="title" id="start-screen">
+        <h1>Code Quiz</h1>
+        <p class="start-par">Click the start button to begin the Code quiz. You will have 60 seconds to complete the quiz. If you get a question wrong, you will have 10 seconds deducted. At the end of the quiz, please enter your initials so your score may be saved on the score board.</p>
+        <button id="start-button">
             <h1>Start!</h1>
         </button>
     </div>
@@ -21,22 +28,99 @@
         <div id ="question-container" class="hide">
             <div id = "question">Question</div>
             <div id = "answer-btns" class="btn-grid">
-                <button class="btn" id="question1">
-                    What type of animal emerges from the congress bridge during the summer?
-                </button>
-                <button class="btn" id="question2">
-                    Austin is known as the ____.
-                </button>
-                <button class="btn" id="question3">
-                    Austin is the __ largest city in Texas by population.
-                </button>
-                <button class="btn" id="question4">
-                    What is the name of the lake that flows through central Austin? Hint: It runs under Congress and First street, and it reaches I-35 and Mopac.
-                </button>
             </div>
         </div>
         
     </div>
+    <script type="text/javascript">
+    var startButton = document.getElementById("start-button");
+    var questionContainerEl = document.getElementById("question-container");
+    var questionEl = document.getElementById("question");
+    var answerButtonEl = document.getElementById("answer-btns");
+    var startScreen = document.getElementById("start-screen");
+    var currentTime = document.getElementById("current-time");
+
+    startButton.addEventListener("click", startGame);
+    
+    var score =0;
+    var time= 30;
+    var index = 0;
+    var questions = [
+        {
+            questionTitle:"Test Question",
+            choices: ["Answer1","Answer2","Answer3","Answer4"],
+            correctAnswer: "Answer2"
+        },
+        {
+            questionTitle:"Test Question 2",
+            choices: ["Answer1","Answer2","Answer3","Answer4"],
+            correctAnswer: "Answer2"
+        },
+        {
+            questionTitle:"Test Question 3",
+            choices: ["Answer1","Answer2","Answer3","Answer4"],
+            correctAnswer: "Answer2"
+        },
+        {
+            questionTitle:"Test Question 4",
+            choices: ["Answer1","Answer2","Answer3","Answer4"],
+            correctAnswer: "Answer2"
+        },
+    ]
+    
+    function timer(){
+        time--
+        currentTime.textContent=time;
+        if (time <= 0){
+            time=0;
+            //Call end quiz function here
+        }
+    }
+
+    function startGame(){
+    startScreen.setAttribute("class","hide");
+    questionContainerEl.removeAttribute("class");
+    //SetInterval starts the timer and changes the time every 1 second (1000ms)
+    setInterval(timer,1000);
+    currentTime.textContent=time;
+    getQuestion();
+};
+    function getQuestion(){
+        var current = questions[index];
+        questionEl.textContent=current.questionTitle;
+        answerButtonEl.innerHTML="";
+        current.choices.forEach(function(choice,i){
+            console.log(choice,i)
+            var button = document.createElement("button");
+            button.setAttribute("value",choice)
+            button.textContent=choice;
+            // Attach onclick for each choice here
+            button.onclick=selectAnswer
+            answerButtonEl.append(button);
+        });
+    }
+
+    function selectAnswer(){
+   if (this.value !== questions[index].correctAnswer){
+       time -=10
+
+       //Stops timer at zero (to keep it from running negative)
+       if (time < 0){
+           time =0;
+       }
+       currentTime.textContent=time;
+   }
+   index++
+   if (index === questions.length){
+       //Call end quiz function here 
+   }
+   else {
+       getQuestion();
+   }
+}
+
+
+    </script>
 
 </body>
 </html>
