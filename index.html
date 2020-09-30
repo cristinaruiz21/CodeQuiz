@@ -32,9 +32,31 @@
         </div>
         
     </div>
-    <div id="done-screen" class="hide">
-        <div class="score-board">Score=<span id="score">0</span></div>
-    </div>
+    <div class="row">
+        <div class="column">
+            <div id="done-screen" class="hide">
+                <div class="score-board">
+                    <h1>Score=</h1><span id="score"></span></div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="initials" class="hide">
+                <form id="initial-form" method="POST">
+                  <label for="initial-text">Write Your Initials:</label>
+                  <input type="text" placeholder="Type Initials Here" name="initial-text" id="initial-text" />
+                </form>
+                <p>Score-board: <span id="initial-count">0</span></p>
+                <ul id="initial-list"></ul>
+              </div>
+        </div>
+        <div class="column">
+            <div class="hide" id="restart">
+                <button id="restart-button">
+                    <h1>Retry Quiz!</h1>
+                </button>
+            </div>
+        </div>
+      </div>
     <script type="text/javascript">
     var startButton = document.getElementById("start-button");
     var questionContainerEl = document.getElementById("question-container");
@@ -44,6 +66,11 @@
     var currentTime = document.getElementById("current-time");
     var doneScreen = document.getElementById("done-screen");
     var score = document.getElementById("score");
+    var initialsEl = document.getElementById("initials");
+    var restart = document.getElementById("restart");
+    var restartButton = document.getElementById("restart-button");
+    
+    
 
     startButton.addEventListener("click", startGame);
     
@@ -123,18 +150,79 @@
    index++
    if (index === questions.length){
        //Call end quiz function here 
-       endQuiz()
+       endQuiz();
    }
    else {
        getQuestion();
    }
 }
+//Shows the score and asks to input initials
     function endQuiz(){
             questionContainerEl.setAttribute("class","hide");
             doneScreen.removeAttribute("class");
             doneScreen.textContent="All done!";
-            score.textContent=time;
+            doneScreen.append(score);
+            score.textContent="Score= "+ time;
+            renderInitials();
     }
+
+    var initialInput = document.querySelector("#initial-text");
+    var initialForm = document.querySelector("#initial-form");
+    var initialList = document.querySelector("#initial-list");
+    var initialCountSpan = document.querySelector("#initial-count");
+
+    var initials = [""];
+
+//Sets up the page to include only the done screen and initials elements
+    function renderInitials() {
+    questionContainerEl.setAttribute("class","hide");
+    doneScreen.removeAttribute("class");
+    initialsEl.removeAttribute("class");
+  // Clear initialsList element and update initialsCountSpan
+    initialList.innerHTML = "";
+    initialCountSpan.textContent = initials.length;
+    doneScreen.append(initials);
+
+  // Render a new li for each initials
+    for (var i = 0; i < initials.length; i++) {
+    var initial = initials[i];
+
+    var li = document.createElement("li");
+    li.textContent = initial + time;
+    initialList.appendChild(li);
+  }
+    restart.removeAttribute("class");
+}
+
+// When form is submitted...
+    initialForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var initialText = initialInput.value.trim();
+
+  // Return from function early if submitted initialText is blank
+    if (initialText === "") {
+    return;
+  }
+
+  // Add new initialText to todos array, clear the input
+    initials.push(initialText);
+    initialInput.value = "";
+    
+
+
+  // Re-render the list
+    renderInitials();
+});
+
+restartButton.addEventListener("click", refreshPage);
+
+function refreshPage(){
+    window.location.reload();
+} 
+
+        
+
 
 
     </script>
