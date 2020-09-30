@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: lavender;
+    background-color: white;
     padding: 0;
     margin: 0;
     display: flex;
@@ -11,11 +11,15 @@ body{
     align-items: center;
 }
 
-.title{
+#start-screen{
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: black;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding-left: 350px;
+    padding-top: 50px;
 }
 .start-par{
     font-size: 15px;
@@ -25,6 +29,11 @@ body{
 }
 .startbutton{
     margin: auto;
+}
+
+button{
+    background-color: purple;
+    color: white;
 }
 
 .btn-grid{
@@ -52,4 +61,21 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#question{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 100px;
+}
+
+.timer{
+    right: 0;
+}
+#done-screen{
+    text-align: center;
+    padding-right: 700px;
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

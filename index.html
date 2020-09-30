@@ -32,6 +32,9 @@
         </div>
         
     </div>
+    <div id="done-screen" class="hide">
+        <div class="score-board">Score=<span id="score">0</span></div>
+    </div>
     <script type="text/javascript">
     var startButton = document.getElementById("start-button");
     var questionContainerEl = document.getElementById("question-container");
@@ -39,32 +42,38 @@
     var answerButtonEl = document.getElementById("answer-btns");
     var startScreen = document.getElementById("start-screen");
     var currentTime = document.getElementById("current-time");
+    var doneScreen = document.getElementById("done-screen");
+    var score = document.getElementById("score");
 
     startButton.addEventListener("click", startGame);
     
-    var score =0;
     var time= 30;
     var index = 0;
     var questions = [
         {
-            questionTitle:"Test Question",
-            choices: ["Answer1","Answer2","Answer3","Answer4"],
-            correctAnswer: "Answer2"
+            questionTitle:"1. Commonly used data types do NOT include:",
+            choices: ["Booleans","Strings","Alerts","Numbers"],
+            correctAnswer: "Alerts"
         },
         {
-            questionTitle:"Test Question 2",
-            choices: ["Answer1","Answer2","Answer3","Answer4"],
-            correctAnswer: "Answer2"
+            questionTitle:"2. The condition in an if/else statement is enclosed within __",
+            choices: ["Quotes","Curly Brackets","Parentheses","Square Brackets"],
+            correctAnswer: "Parentheses"
         },
         {
-            questionTitle:"Test Question 3",
-            choices: ["Answer1","Answer2","Answer3","Answer4"],
-            correctAnswer: "Answer2"
+            questionTitle:"3. Arrays in javascript can be used to store__",
+            choices: ["Numbers and strings","Other arrays","Booleans","All of the Above"],
+            correctAnswer: "All of the Above"
         },
         {
-            questionTitle:"Test Question 4",
-            choices: ["Answer1","Answer2","Answer3","Answer4"],
-            correctAnswer: "Answer2"
+            questionTitle:"4. String values must be enclosed within__ when being assigned to variables.",
+            choices: ["Commas","Curly Brackets","Quotes","Parentheses"],
+            correctAnswer: "Quotes"
+        },
+        {
+            questionTitle:"5. A useful tool used during the development and debugging for printing content to the debugger is ___",
+            choices: ["Javascript","For Loops","Terminal Bash","Console.log"],
+            correctAnswer: "Console.log"
         },
     ]
     
@@ -74,6 +83,7 @@
         if (time <= 0){
             time=0;
             //Call end quiz function here
+            endQuiz()
         }
     }
 
@@ -113,11 +123,18 @@
    index++
    if (index === questions.length){
        //Call end quiz function here 
+       endQuiz()
    }
    else {
        getQuestion();
    }
 }
+    function endQuiz(){
+            questionContainerEl.setAttribute("class","hide");
+            doneScreen.removeAttribute("class");
+            doneScreen.textContent="All done!";
+            score.textContent=time;
+    }
 
 
     </script>
